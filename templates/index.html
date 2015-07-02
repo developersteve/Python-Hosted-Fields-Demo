@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class='container'>
+
+      <div class="col-md-offset-1 col-md-5 col-xs-12 col-sm-6">
+        <img src='/public/img/paymeh.jpg' class='img-responsive center'>
+      </div>
+
+      <form class='col-md-5 col-xs-12 col-sm-6' action='/proc' method='post'>
+
+        <div class="row">
+          <div class="input-group">
+            <h3>Braintree Hosted Field Demo</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1">Card Number</span>
+            <div id="card-number" class="form-control"></div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+
+            <span class="input-group-addon" id="sizing-addon1">Card Exp</span>
+            <div id="card-exp" class="form-control"></div>
+
+            <span class="input-group-addon" id="sizing-addon1">CVV</span>
+            <div id="card-cvv" class="form-control"></div>
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div id='checkout'>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group col-md-6">
+            <input type='submit' value='Submit Payment' class='btn btn-danger btn-lg'>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group col-md-12">
+            <h5>Event output</h5>
+            <pre class="litterbox"></pre>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <script charset='utf-8'>
+    function catchange(card){
+      jQuery(".catus img").attr("src", "/public/img/paymeh.jpg"+card);
+    }
+
+    braintree.setup("{{token}}", "custom", {
+      id: "hostedform",
+      hostedFields: {
+        number: {
+          selector: "#card-number"
+        },
+        cvv: {
+          selector: "#card-cvv"
+        },
+        expirationDate: {
+          selector: "#card-exp"
+        },
+      styles: {
+        "input": {
+          "font-size": "16pt",
+          "color": "#3A3A3A"
+        },
+        ".number": {
+          "font-family": "monospace"
+        },
+        ":focus": {
+          "color": "blue"
+        },
+        ".valid": {
+          "color": "green"
+        },
+        ".invalid": {
+          "color": "red"
+        },
+      },
+      onFieldEvent: function (event) {
+          if(event.isValid){
+            if(event.target['fieldKey']==="number"){
+              catchange(event.target['fieldKey']+'-'+event.card.type+'.jpg');
+            }else{
+              catchange(event.target['fieldKey']+'.jpg');
+            }
+          }
+          else if(event.type === "blur"){
+            catchange(event.target['fieldKey']+'-no.jpg');
+          }
+          jQuery('.litterbox').text("Target: "+event.target['fieldKey']+"\nEvent: "+event.type+'\nValid: '+event.isValid);
+        }
+      }
+    });
+    </script>
+
+{% endblock %}
+

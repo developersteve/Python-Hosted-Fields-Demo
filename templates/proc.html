@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <div class='container'>
+    <div class='row'>
+      <header>
+        <h1>Payment Success</h1>
+      </header>
+    </div>
+
+    <div class='row'>
+      <h2>Params</h2>
+      {{request}}
+    </div>
+
+    <div class='row'>
+      <h2>Braintree::Transaction</h2>
+      {{result}}
+    </div>
+  </div>
+
+{% endblock %}
+
