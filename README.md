@@ -1,6 +1,6 @@
-# Braintree Hostedfields Python demo using Flask 
+# Braintree Hosted Fields Python demo using Flask 
 
-This is a reall basic example of the Braintree Hostedfields using Flask to make a Credit Card or PayPal payment.
+This is a reall basic example of the Braintree Hosted Fields using Flask to make a Credit Card or PayPal payment.
 
 ## Technology
 

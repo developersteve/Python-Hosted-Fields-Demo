@@ -22,7 +22,7 @@ def index():
 def proc():
 
     result = braintree.Transaction.sale({
-        "amount": request.form["amount"],
+        "amount": "100.00",
         "payment_method_nonce": request.form["payment_method_nonce"]
     })
 

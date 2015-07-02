@@ -3,11 +3,11 @@
 
     <div class='container'>
 
-      <div class="col-md-offset-1 col-md-5 col-xs-12 col-sm-6">
+      <div class="col-md-offset-1 col-md-5 col-xs-12 col-sm-6 catus">
         <img src='/public/img/paymeh.jpg' class='img-responsive center'>
       </div>
 
-      <form class='col-md-5 col-xs-12 col-sm-6' action='/proc' method='post'>
+      <form class='col-md-5 col-xs-12 col-sm-6' id='hostedform' action='/proc' method='post'>
 
         <div class="row">
           <div class="input-group">
@@ -60,7 +60,7 @@
 
     <script charset='utf-8'>
     function catchange(card){
-      jQuery(".catus img").attr("src", "/public/img/paymeh.jpg"+card);
+      jQuery(".catus img").attr("src", "/public/img/"+card);
     }
 
     braintree.setup("{{token}}", "custom", {
